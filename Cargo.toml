@@ -2,3 +2,6 @@
 name = "smartfzf"
 version = "0.1.0"
 authors = ["Logan Engstrom <meadowstream@users.noreply.github.com>"]
+
+[dependencies]
+ncurses = "5.73.0"
