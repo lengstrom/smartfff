@@ -17,7 +17,6 @@ fn main() {
     let input_handle = thread::spawn( || {
         while (true) {
             let ch = getch();
-            
         }
     });
 
