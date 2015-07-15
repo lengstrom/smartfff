@@ -26,7 +26,7 @@ fn main() {
 
     // Select loop
     loop {
-        match (get_character()) {
+        match (get_character(rx)) {
             Some(character) => printw(character),
             _ => {}
         };
@@ -37,7 +37,7 @@ fn main() {
     endwin();
 }
 
-fn get_character() -> Option<i32> {
+fn get_character(Receiver: rx) -> Option<i32> {
     let attempt = rx.try_recv();
     match (attempt) {
         Some(char_code) => char::from_u32(char_code),
