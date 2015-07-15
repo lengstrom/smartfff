@@ -24,7 +24,13 @@ fn main() {
         }
     });
 
-    printw("Hello, world!");
+    // Select loop
+    loop {
+        match (get_character()) {
+            Some(character) => printw(character),
+            _ => {}
+        };
+    };
     
     refresh();
     getch();
@@ -32,7 +38,11 @@ fn main() {
 }
 
 fn get_character() -> Option<i32> {
-    match (rx.recv()
-    let ch = char::from_u32(char_code).expect("Invalid char!");
+    let attempt = rx.try_recv();
+    match (attempt) {
+        Some(char_code) => char::from_u32(char_code),
+        _ => None
+        
+    };
 }
 
