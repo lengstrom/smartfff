@@ -1,41 +1,27 @@
 extern crate ncurses;
-extern crate rust-linenoise;
+extern crate linenoise;
 
-use ncurses::*;
-use rust-linenoise::*;
-use std::char;
 use std::sync::mpsc::{Sender, Receiver};
 use std::sync::mpsc;
 use std::thread;
 
+// Nothing for now
+fn autocomplete_callback(input: &str) -> Vec<String> {
+    let ret = vec!["wot"];
+    return ret.iter().map(|s| s.to_string()).collect();
+}
+
 fn main() {
-    // Setup ncurses
-    initscr();
-    raw();
-
-    // Allow for keyboard
-    keypad(stdscr, true);
-
+    linenoise::set_callback(autocomplete_callback);
+    
+    // let val = linenoise::input("> ");
     let (tx, rx) = mpsc::channel();
 
     let input_handle = thread::spawn( move || {
-        while (true) {
-            let char_code : u32 = (getch() as u32);
-            tx.send(char_code);
+        loop {
+            
         }
     });
-    
-    refresh();
-    getch();
-    endwin();
 }
 
-fn get_character(rx : mpsc::Receiver<u32>) -> Option<char> {
-    let attempt = rx.try_recv();
-    match (attempt) {
-        Some(char_code) => char::from_u32(char_code),
-        _ => None
-        
-    };
-}
-
+fn get_selection(rx : mpsc::Receiver<Result<&str>>) -> 
