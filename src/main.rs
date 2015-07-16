@@ -19,7 +19,7 @@ fn main() {
 
     let input_handle = thread::spawn( move || {
         loop {
-            
+            // get input from line
         }
     });
 }
